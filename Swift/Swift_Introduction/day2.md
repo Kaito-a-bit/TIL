@@ -76,7 +76,7 @@ order == ComparisonResult/orderedSame //true
   `!`で強制的に値を取り出す。やらない方が良い。
   
 ・**map(_:)**,**flatMap(_:)でアンラップを伴わない値の変更を行う**  
-どちらのメソッドも引数には値を変換するクロージャを渡す。
+どちらのメソッドも引数には値を変換するクロージャを渡す。  
 `map(_:)`の例
   
 ```
@@ -84,7 +84,7 @@ order == ComparisonResult/orderedSame //true
   let b = a.map({ value in value * 2}) //34
   type(of: b) //Optional<Int>.Type
 ```
-別の型へのキャストも可能
+別の型への変換も可能
 ```
   let a = Optional(17)
   let b = a.map({ value in String(value)}) //"17"
@@ -112,7 +112,7 @@ order == ComparisonResult/orderedSame //true
 （逆にOptionalでない値を返すクロージャを渡す場合には両者相違は無い？）**  
 参考: [SwiftのOptionalの注意点とmap/flatMap](https://scior.hatenablog.com/entry/2020/03/02/230404)  
 
-・**暗示的にアンラップされたOptional<Wrapped型>**  
+・**暗黙的にアンラップされたOptional<Wrapped型>**  
 型の宣言の際にWrapped!と表記する。わかりやすいのは`ViewController`などの宣言。  
 注意するべき点は**アクセスする際に毎回強制アンラップが行われる**こと。即ちアクセス時に`nil`の場合は実行時にエラーが発生する。
 ```
