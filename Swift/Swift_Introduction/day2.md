@@ -59,6 +59,13 @@ order == ComparisonResult/orderedSame //true
 
 ・**Optional<Wrapped>型のアンラップ**  
   →オプショナルバインディング  
+  `if let`で宣言した定数に値が存在していればスコープ内の処理が実行される  
+  ```
+  let optionalA = Optioonal("a")
+  if let a = optionalA {
+    print(type(of: a))
+  }
+  ```
   →`??`演算子  
   →強制アンラップ
   
