@@ -49,3 +49,16 @@ let order = "abc".compare("ABC", options: options)
 order == ComparisonResult/orderedSame //true
 ```
 
+### Optional<Wrapped>型  
+・**Optional型の生成の注意点**  
+以下はコンパイルエラー
+```
+  let a: Int? = nil //OK
+  let b = nil //元の型が決定しないのでエラー
+```
+
+・**Optional<Wrapped>型のアンラップ**  
+  →オプショナルバインディング  
+  →`??`演算子  
+  →強制アンラップ
+  
