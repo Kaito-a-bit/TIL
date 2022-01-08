@@ -124,7 +124,7 @@ order == ComparisonResult/orderedSame //true
 ```
   
 ### Any型
-.**Any型に代入すると型は損失される**
+・**Any型に代入すると型は損失される**
 ```
   let a: Any = 1
   let b: Any = 2
