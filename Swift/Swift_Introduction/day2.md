@@ -67,5 +67,10 @@ order == ComparisonResult/orderedSame //true
   }
   ```
   →`??`演算子  
+  値が存在しなかった場合のデフォルトの値を与える
+  ```
+  let optionalInt: Int? = nil
+  let int = optionalInt ?? 3 // 3
+  ```
   →強制アンラップ
-  
+  `!`で強制的に値を取り出す。やらない方が良い。
