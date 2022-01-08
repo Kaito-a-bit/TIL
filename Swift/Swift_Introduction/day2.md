@@ -75,5 +75,38 @@ order == ComparisonResult/orderedSame //true
   →強制アンラップ  
   `!`で強制的に値を取り出す。やらない方が良い。
   
-  ・**map(_:)・flatMap(_:)でアンラップを伴わない値の変更を行う**
- 
+・**map(_:),flatMap(_:)でアンラップを伴わない値の変更を行う**  
+どちらのメソッドも引数には値を変換するクロージャを渡す。
+`map(_:)`の例
+  
+```
+  let a = Optional(17)
+  let b = a.map({ value in value * 2}) //34
+  type(of: b) //Optional<Int>.Type
+```
+別の型へのキャストも可能
+```
+  let a = Optional(17)
+  let b = a.map({ value in String(value)}) //"17"
+  type(of: b) //Optional<String>.Type
+```
+`flatMap(_:)`の例  
+```
+  let a = Optional(17)
+  let b = a.map({ value in Int(value)}) //17
+  type(of: b) //Optional<Int>.Type
+```
+  
+`map(_:), flatMap(_:)`の違いは**クロージャの返り値がアンラップが否か**  
+例えば`Stirng→Int`に変換するクロージャを各メソッドに渡したとする。  
+前提として、`String→Int`に変換を行った場合の返り値は`Int?`となる。
+```
+  let a = Optional("17")
+  let b = a.flatMap({ value in Int(value)}) //この時点でInt(value)がInt?になっている
+  let c = a.map({ value in Int(value)})
+  
+  type(of: b) // Optional<Int>.Type
+  type(of: c) //Optional<Optional<Int>>.Type
+```
+**即ちOptionalを返すクロージャに対してはflatMap使用する場合が多い（逆にOptionalでない値を返すクロージャを渡す場合には両者相違は無い？）**
+参考: [SwiftのOptionalの注意点とmap/flatMap](https://scior.hatenablog.com/entry/2020/03/02/230404)
