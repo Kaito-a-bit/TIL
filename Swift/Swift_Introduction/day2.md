@@ -110,4 +110,33 @@ order == ComparisonResult/orderedSame //true
 ```
 **即ちOptionalを返すクロージャに対してはflatMap使用する場合が多い  
 （逆にOptionalでない値を返すクロージャを渡す場合には両者相違は無い？）**  
-参考: [SwiftのOptionalの注意点とmap/flatMap](https://scior.hatenablog.com/entry/2020/03/02/230404)
+参考: [SwiftのOptionalの注意点とmap/flatMap](https://scior.hatenablog.com/entry/2020/03/02/230404)  
+
+・**暗示的にアンラップされたOptional<Wrapped型>**  
+型の宣言の際にWrapped!と表記する。わかりやすいのは`ViewController`などの宣言。  
+注意するべき点は**アクセスする際に毎回強制アンラップが行われる**こと。即ちアクセス時に`nil`の場合は実行時にエラーが発生する。
+```
+  let a: Int! = 1
+  a + 1 //演算可能
+  
+  var b: Int = nil
+  b + 1 //値が無い為エラー
+```
+  
+### Any型
+.**Any型に代入すると型は損失される**
+```
+  let a: Any = 1
+  let b: Any = 2
+  a + b //コンパイルエラー
+```
+  
+### Tuple型
+・**Tuple型とVoid型**  
+  タプル型は複数の型の値を保持することができる。要素の型が0個のタプル型をVoid型という。  
+  Void型は**値が存在し得ないことを表す**型。  
+  nilはあくまで**値が存在し得る場所で値がないことを示すもの**である。
+  
+day3に続く
+
+  
