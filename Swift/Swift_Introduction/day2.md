@@ -72,5 +72,8 @@ order == ComparisonResult/orderedSame //true
   let optionalInt: Int? = nil
   let int = optionalInt ?? 3 // 3
   ```
-  →強制アンラップ
+  →強制アンラップ  
   `!`で強制的に値を取り出す。やらない方が良い。
+  
+  ・**map(_:)・flatMap(_:)でアンラップを伴わない値の変更を行う**
+ 
