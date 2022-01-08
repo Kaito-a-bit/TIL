@@ -75,7 +75,7 @@ order == ComparisonResult/orderedSame //true
   →強制アンラップ  
   `!`で強制的に値を取り出す。やらない方が良い。
   
-・**map(_:),flatMap(_:)でアンラップを伴わない値の変更を行う**  
+・**map(_:)**,**flatMap(_:)でアンラップを伴わない値の変更を行う**  
 どちらのメソッドも引数には値を変換するクロージャを渡す。
 `map(_:)`の例
   
@@ -108,5 +108,6 @@ order == ComparisonResult/orderedSame //true
   type(of: b) // Optional<Int>.Type
   type(of: c) //Optional<Optional<Int>>.Type
 ```
-**即ちOptionalを返すクロージャに対してはflatMap使用する場合が多い（逆にOptionalでない値を返すクロージャを渡す場合には両者相違は無い？）**
+**即ちOptionalを返すクロージャに対してはflatMap使用する場合が多い  
+（逆にOptionalでない値を返すクロージャを渡す場合には両者相違は無い？）**  
 参考: [SwiftのOptionalの注意点とmap/flatMap](https://scior.hatenablog.com/entry/2020/03/02/230404)
