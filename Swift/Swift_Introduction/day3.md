@@ -15,7 +15,7 @@
 `as?`**はエラーの可能性がなく安全だが**`nil`**の可能性を考慮する必要がある。**  
 `as!`**は簡潔だが、エラーを起こす可能性を孕んでいる為、なるべく避ける。**  
 
-・**実践例**  
+・**実践例にみるas?・as!の使い分け**  
 よく見るのは`TableView`をカスタムクラスで実装したい場合。 
 
 ```
@@ -39,6 +39,8 @@
       return cell
   }
 ```
+参照: [is force cast really bad and should i avoid this?](https://stackoverflow.com/questions/36024543/is-force-cast-really-bad-and-should-always-avoid-it)  
+→`map`を用いて確実にキャストしたいサブクラスに変更する方法が紹介されていた。確実にキャストしたいサブクラスにできていれば、強制キャスティングも良いのでは。的な。
 
 ・**型の判定**
 `is`演算子を用いる  
