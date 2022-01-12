@@ -36,7 +36,7 @@ if let文で宣言された定数はスコープ内でのみで使用できる�
 ・**guard文**  
 `guard`文は条件不成立時に早期退出を行うための条件分岐文。  
 `if`文と同様に条件式の評価結果となるBool型の値に応じた処理を行うが、後続の処理を行うにあたってtrueとなっているべき条件を指定する必要がある。  
-スコープの中にはスコープの外に退出する処理を記載する必要がある。  
+スコープの中には**guard文が含まれるスコープの外に**退出する処理を記載する必要がある。  
 ```Swift
   func someFunction() {
       let value = -1
@@ -49,5 +49,39 @@ if let文で宣言された定数はスコープ内でのみで使用できる�
   
   //0未満の値です
 ```
+
+・**スコープからの退出の強制**  
+guard文のelse節以降では、guard文の条件式が必ず成立していることがコンパイラによって保証される。  
+```Swift
+  func printIfPositive(_ a: Int) {
+      guard a > 0 else {
+          return
+      }
+      
+      //guard文以降では a >0 が成立することが保証される
+      print(a)
+  }
+```
+
+・**guard let文**  
+if文と同様にguard let文を使用することができる。  
+if let文と異なるのは、guard let文で宣言した定数や変数にそれ以降でアクセスすることができる点にある。（guard文以降では、定数や変数の値の存在が保証されているから）  
+```Swift
+  func someFunction() {
+      let a: Any = 1
+      
+      guard let int = a as? Int else {
+          print("aはInt型ではありません")
+          return 
+      }
+      
+      print("値は Int型の\(int)です ")
+  }
+```
+
+
+
+
+
 
 
