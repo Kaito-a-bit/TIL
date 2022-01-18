@@ -49,5 +49,5 @@
         print("hello, \(user)")
     }
     var user: String = ""
-    greet(user: &user)
+    greet(user: &user) // "Hello, Anonymous"
 ```
