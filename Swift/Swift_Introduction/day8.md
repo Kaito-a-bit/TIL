@@ -51,3 +51,13 @@
     var user: String = ""
     greet(user: &user) // "Hello, Anonymous"
 ```
+
+・**可変長引数**  
+引数定義の末尾に`...`を加える。  
+```Swift
+        func sumUpAll(nums: Int...) -> Int {
+            return nums.reduce(0, +)
+        }
+
+        var testSum = sumUpAll(nums: 1,3,5,6,7,7,8,8) //45
+```
