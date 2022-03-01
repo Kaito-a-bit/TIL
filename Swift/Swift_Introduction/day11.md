@@ -100,7 +100,65 @@ lazyValueの値は2です。
 ```
 このプロパティを用いることで、初期化コストの高いプロパティの初期化をアクセス時まで伸ばし、アプリのパフォーマンスを向上させることができる。  
 
+**コンピューテッドプロパティ**  
 
+プロパティ自身では、値を保持せず、既に存在するストアドプロパティなどから計算して値を返す。  
+ゲッターとセッターを指定する。前者は、プロパティの値を返す処理、後者はプロパティの値を更新する処理。  
+
+・**ゲッター**  
+他のストアドプロパティなどから値を取得して、コンピューテッドプロパティの値として返す。  
+値の返却には`return`を用いる。  
+```Swift
+struct Greeting {
+    var to = "Yosuke Ishikawa"
+    var body: String {
+        get {
+            return "hello, \(to)!"
+        }
+    }
+}
+
+let greeting = Greeting()
+greeting.body //"Hello, Yosuke Ishikawa!"
+
+```
+
+・**セッター**  
+プロパティに代入された値を使用して、他のストアドプロパティなどを更新する。  
+セッター内では暗黙的に宣言された`newValueという定数を通じて代入された値にアクセスできる。  
+この値を使用して、セッターの実行後に、ゲッターがnewValueを同じ値を返せるようにインスタンスを更新する。  
+```Swift
+struct Temperature {
+    var celsius: Double = 0.0
+    
+    var fahrenheit: Double {
+        get {
+            return (9.0 / 5.0) * celsius + 32.0
+        }
+        
+        set {
+            celsius = (5.0 / 9.0) * (newValue - 32.0)
+        }
+    }
+}
+
+temperature.celsius = 20
+temperature.fahrenheit //68。値を返却
+
+tempetature.fahrenheit = 40 //値を更新
+temperature.celsius //10。
+```
+`get`の定義は必須である。`set`を使用しない場合には、`get`と`{}`を省略してゲッターを記述することが出来る（下記例）。  
+セッターの定義の無いコンピューテッドプロパティでは代入による値の変更はできない。プロパティの更新をしようとするとエラーになるので注意。  
+
+```Swift
+struct Greeting {
+    var to = "Yusuke Ishikawa"
+    var body: String {
+        return "hello, \(to)!"
+    }
+}
+```
 
 
 
