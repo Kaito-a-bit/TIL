@@ -43,4 +43,68 @@ struct Greeting {
 ```
 上記の例では、インスタンスを複数生成してもsignatureプロパティの持つ値は共通して保持される。  
 
+**ストアドプロパティ（上記の分類とは別として）**  
+値を代入して　保持するのがストアドプロパティである。
+
+**プロパティオブザーバ**  
+ストアドプロパティの値の変更を関しし、変更前と変更後に文を実行するのがプロパティオブザーバである。  
+`willSet`, `didSet`を用いて定義する。  
+```Swift
+struct Greeting {
+    var to = "Yosuke Ishikawa" {
+        willSet {
+            print("willSet: (to: \(self.to), newValue: \(newValue))")
+        }
+        
+        didSet {
+            print("didSet: (to: \(self.to))")
+        }
+    }
+}
+
+var greeting = Greeting()
+greeting.to = "Yosuke Nishiyama"
+
+```
+
+プロパティの値が変更されるタイミングで処理が実行される。  
+
+**レイジーストアドプロパティ**  
+アクセスされるまで初期化を遅延させることができるプロパティである。  
+🚨`let`による再代入不可能なプロパティには使用できない。  
+```Swift
+struct SomeStruct {
+    var value: Int = {
+        print("valueの値を生成します。")
+        return 1
+    }()
+
+    lazy var lazyValue: Int = {
+        print("lazyValueの値を生成します。")
+        return 2
+    }()
+}
+
+var someStruct = SomeStruct()
+print("SomeStructをインスタンス化しました。")
+print("valueの値は\(someStruct.value)です。")
+print("lazyValueの値は\(someStruct.lazyValue)です。")
+
+//実行結果
+valueの値を生成します。
+SomeStructをインスタンス化しました。
+valueの値は1です。
+lazyValueの値を生成します。
+lazyValueの値は2です。
+
+```
+このプロパティを用いることで、初期化コストの高いプロパティの初期化をアクセス時まで伸ばし、アプリのパフォーマンスを向上させることができる。  
+
+
+
+
+
+
+
+
 
