@@ -80,5 +80,6 @@ let int: Int = valueContainer.getValue() //123
 
 ```
 
-- ここも記事ほしい
+- ここも記事確認
+
 
