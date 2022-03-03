@@ -40,5 +40,44 @@ struct Item {
 
 異なる引数や戻り値を取る同名のメソッドを複数用意して、引数に渡される型や戻り値の代入先に応じて実行するメソッドを切り替える手法。  
 
+```Swift
+//引数によるオーバーロード
+struct Printer {
+    func put(_ value: String) {
+        print("string: \(value)")
+    }
+    
+    func put(_ value: Int) {
+        print("int: \(value)")
+    }
+    
+}
+
+let printer = Printer()
+printer.put("123") //string: 123
+printer.put(123) //int: 123
+
+//戻り値によるオーバーロード
+struct ValueContainer {
+    let stringValue = "abc"
+    let intValue = 123
+    
+    func getValue() -> String {
+        return stringValue
+    }
+    
+    func getValue() -> Int {
+        return intValue
+    }
+}
+
+let valueContainer = ValueContainer()
+
+//戻り値の代入先の型アノテーションが省略されてしまうとコンパイルエラー（当然）
+let string: String = valueContainer.getValue() //"abc"
+let int: Int = valueContainer.getValue() //123
+
+```
+
 - ここも記事ほしい
 
