@@ -33,9 +33,6 @@ struct Item {
 スタティックメソッドの利点については下記を参照
 - [Swiftの強力な機能であるstaticメソッド制約の紹介と、Kotlin, TypeScript, Java, Scala, C++との比較](https://qiita.com/omochimetaru/items/621f1ef62b9798ee5ff5)
 - [Swift Language Guide](https://docs.swift.org/swift-book/LanguageGuide/Methods.html)
--
-
-
 
 ・**オーバーロード**  
 
